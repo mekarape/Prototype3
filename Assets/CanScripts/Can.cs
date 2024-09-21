@@ -30,11 +30,11 @@ public class Can : MonoBehaviour
             // Notify the CanSpawner that this can has been destroyed
             canSpawner.OnCanDestroyed();
 
+            // Add score
+            scoreManager.AddScore(1);  // Add 1 point to the score
+
             // Destroy the ball
             Destroy(collision.gameObject);
-
-            // Add score
-            //scoreManager.AddScore(1);  // Add 1 point to the score
 
             // Destroy the can (after a small delay to allow the sound to play)
             Destroy(gameObject, 0.5f);  // Delay destruction to let the audio play

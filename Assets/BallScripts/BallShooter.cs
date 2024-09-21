@@ -85,5 +85,11 @@ public class BallShooter : MonoBehaviour
         Rigidbody2D rb = currentBall.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;  // Disable gravity for side-to-side movement
     }
-}
 
+    // Method to increase the ball speed
+    public void IncreaseBallSpeed(float increment)
+    {
+        ballSpeed += increment;  // Increase the current ball speed
+        Debug.Log("Ball speed increased to: " + ballSpeed);  // Optional debug message
+    }
+}
