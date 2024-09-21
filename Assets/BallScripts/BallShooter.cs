@@ -5,9 +5,9 @@ public class BallShooter : MonoBehaviour
     public GameObject ballPrefab;  // The ball prefab
     private GameObject currentBall;  // The current ball being controlled
     public float shootForce = 500f;  // Force to shoot the ball
-    public float ballSpeed = 5f;  // Speed of side-to-side movement
+    public float ballSpeed = 5f;  // Initial speed of side-to-side movement
     public float boundaryX = 8.89f;  // X-axis boundary for left-to-right movement
-    public float speedIncrement = 1f;  // Amount to increase speed on collision
+    public float speedIncrement = 1f;  // Amount to increase speed on each new ball
 
     private int direction = 1;  // 1 for right, -1 for left movement
     private Vector3 lastBallPosition;  // To store the last position of the ball
@@ -76,19 +76,14 @@ public class BallShooter : MonoBehaviour
 
     void SpawnNewBall(Vector3 position, int initialDirection)
     {
-        // Create a new ball and set the movement direction to the previous ball's direction
         currentBall = Instantiate(ballPrefab, position, Quaternion.identity);
-        direction = initialDirection;  // Use the stored direction from the previous ball
+        direction = initialDirection;  
 
-        // Reset speed and gravity for the new ball
-        ballSpeed = 5f;  // Reset speed if needed, or keep increasing based on your logic
+        // Increase the speed for the new ball
+        ballSpeed += speedIncrement;
+
         Rigidbody2D rb = currentBall.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;  // Disable gravity for side-to-side movement
     }
-
-    // Method to increase ball speed
-    public void IncreaseBallSpeed()
-    {
-        ballSpeed += speedIncrement;  // Increase speed
-    }
 }
+
