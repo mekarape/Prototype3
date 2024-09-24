@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject gameOverScene;
     public GameObject startGameText;
+    public GameObject victoryText;  // Victory text to show when the game is won
 
     private bool gameIsOver = false;
     private bool gameIsStarted = false;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
             Time.timeScale = 0;
             startGameText.SetActive(true);
             gameOverScene.SetActive(false);
+            victoryText.SetActive(false);  // Ensure victory text is hidden at the start
         }
     }
 
@@ -57,20 +59,21 @@ public class PlayerController : MonoBehaviour
         gameIsOver = true;
     }
 
+    // Method to handle the game winning logic
+    public void GameWon()
+    {
+        Time.timeScale = 0;  // Pause the game
+        victoryText.SetActive(true);  // Show victory text
+        gameIsOver = true;  // Mark game as over
+    }
+
     public void Restart()
     {
         Time.timeScale = 1;
         isRestarting = true;  // Set the flag to true before reloading the scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "GameOverZone")
-        {
-            GameOver();
-        }
-    }
 }
+
 
 
