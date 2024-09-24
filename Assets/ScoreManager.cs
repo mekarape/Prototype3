@@ -5,7 +5,7 @@ public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;  // Text Mesh Pro UI element to display the score
     private int score = 0;  // Current score
-    private int maxScore = 30;  // The maximum score to win the game
+    private int maxScore = 20;  // The maximum score to win the game
     private PlayerController playerController;  // Reference to the PlayerController
 
     void Start()
